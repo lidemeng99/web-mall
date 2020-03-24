@@ -203,6 +203,9 @@ export default {
         if (this.level === 1) {
           const _item = this.catalogs[this.catalog.index]
           saveitem.catalogId = res
+          if (_item.children === undefined || _item.children === null) {
+            _item.children = []
+          }
           _item.children.push(saveitem)
           this.$set(this.catalogs, this.catalog.index, _item)
           this.$message('子类目添加成功')
