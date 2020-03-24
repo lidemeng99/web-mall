@@ -16,6 +16,7 @@ router.beforeEach(async(to, from, next) => {
 
   // set page title
   document.title = getPageTitle(to.meta.title)
+  console.log(to.path)
 
   // determine whether the user has logged in
   const hasToken = getToken()

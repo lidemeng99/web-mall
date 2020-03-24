@@ -1,0 +1,119 @@
+<template>
+  <div class="app-container">
+
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>商品类目</span>
+        <el-button icon="el-icon-remove-outline" style="float: right; padding: 3px 0; padding-right:12px;" type="text" :disabled="createDisable">删除类目</el-button>
+        <el-button icon="el-icon-circle-plus-outline" style="float: right; padding: 3px 0;padding-right:12px;" type="text" @click="dialogFormVisible = true">创建类目</el-button>
+      </div>
+      <div>
+        <el-tree default-expand-all :data="data" :props="defaultProps" :disabled="true" @node-click="handleNodeClick" />
+      </div>
+    </el-card>
+    <el-dialog title="创建商品类目" :visible.sync="dialogFormVisible">
+      <el-form>
+        <el-form-item label="上级商品类别">
+          <el-input v-model="catalog.parentname" />
+          <el-input v-model="catalog.parentid" type="hidden" style="display:none;" />
+        </el-form-item>
+        <el-form-item label="类目编号">
+          <el-input v-model="catalog.id" />
+        </el-form-item>
+        <el-form-item label="类目名称">
+          <el-input v-model="catalog.name" />
+        </el-form-item>
+        <el-form-item label="类目描述">
+          <el-input v-model="catalog.description" type="textarea" />
+        </el-form-item>
+        <el-form-item label="显示顺序">
+          <el-input-number v-model="catalog.ordernum" controls-position="right" :min="1" :max="10" />
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取消</el-button>
+        <el-button type="primary" @click="saveCatalogClick">确定</el-button>
+      </span>
+    </el-dialog>
+  </div>
+</template>
+
+<script>
+import { createCatalog } from '@/api/product'
+const Catalog = {
+  id: '',
+  name: '',
+  description: '',
+  ordernum: 1,
+  parentid: '',
+  parentname: ''
+}
+export default {
+  name: 'CatalogDetail',
+  data() {
+    return {
+      data: [{
+        id: 1,
+        label: 'Level one 1',
+        parentid: 0,
+        children: [{
+          id: 2,
+          label: 'Level two 1-1',
+          parentid: 1,
+          children: [{
+            id: 3,
+            label: 'Level three 1-1-1',
+            parentid: 2
+          }]
+        }]
+      }],
+      defaultProps: {
+        children: 'children',
+        label: 'label'
+      },
+      num: 1,
+      dialogTableVisible: false,
+      dialogFormVisible: false,
+      createDisable: true,
+      catalog: Catalog
+    }
+  },
+  computed: {
+    message() {
+      return 'The webmaster said that you can not enter this page...'
+    }
+  },
+  methods: {
+    handleNodeClick(data) {
+      console.log(data)
+      this.$data.catalog = {}
+      this.$data.catalog.ordernum = 1
+      this.$data.createDisable = false
+      this.$data.catalog.parentname = data.label
+      this.$data.catalog.parentid = data.parentid
+    },
+    saveCatalogClick() {
+      console.log(this.$data.catalog)
+      createCatalog(this.$data.catalog)
+      this.$data.dialogFormVisible = false
+    }
+  }
+}
+</script>
+
+<style>
+  .custom-tree-node {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    padding-right: 8px;
+  }
+  .el-dialog__footer {
+    padding-top: 8px;
+  }
+  /* .el-dialog__body {
+    padding: 16px 10px;
+  } */
+</style>

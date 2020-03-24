@@ -36,7 +36,63 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    before: require('./mock/mock-server.js'),
+    proxy: {
+      '/dev-api/product-api': {
+        target: 'http://mall.damonli99.site',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/dev-api/product-api': '/product-api'
+        },
+        headers: {
+          Connection: 'keep-alive'
+        },
+        onProxyReq: function log(proxyReq, req, res) {
+          //  console.log(req.body)
+          // console.log(proxyReq.getHeader('Content-Type'))
+
+          if (!req.body || !Object.keys(req.body).length) {
+            return
+          }
+
+          const contentType = proxyReq.getHeader('Content-Type')
+          const writeBody = (bodyData) => {
+            proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData))
+            proxyReq.write(bodyData)
+          }
+          if (contentType.includes('application/json') || contentType.includes('application/x-www-form-urlencoded')) {
+            writeBody(JSON.stringify(req.body))
+          }
+        }
+      },
+      '/dev-api/sales-api': {
+        target: 'http://mall.damonli99.site',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/dev-api/sales-api': '/sales-api'
+        },
+        headers: {
+          Connection: 'keep-alive'
+        },
+        onProxyReq: function log(proxyReq, req, res) {
+          //  console.log(req.body)
+          // console.log(proxyReq.getHeader('Content-Type'))
+
+          if (!req.body || !Object.keys(req.body).length) {
+            return
+          }
+
+          const contentType = proxyReq.getHeader('Content-Type')
+          const writeBody = (bodyData) => {
+            proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData))
+            proxyReq.write(bodyData)
+          }
+          if (contentType.includes('application/json') || contentType.includes('application/x-www-form-urlencoded')) {
+            writeBody(JSON.stringify(req.body))
+          }
+        }
+      }
+    }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

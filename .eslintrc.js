@@ -140,6 +140,7 @@ module.exports = {
     'no-unneeded-ternary': [2, {
       'defaultAssignment': false
     }],
+    'no-tabs': 'off', 
     'no-unreachable': 2,
     'no-unsafe-finally': 2,
     'no-unused-vars': [2, {

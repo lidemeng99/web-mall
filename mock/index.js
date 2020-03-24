@@ -5,12 +5,14 @@ import user from './user'
 import role from './role'
 import article from './article'
 import search from './remote-search'
+import product from './product'
 
 const mocks = [
   ...user,
   ...role,
   ...article,
-  ...search
+  ...search,
+  ...product
 ]
 
 // for front mock
@@ -50,6 +52,7 @@ export function mockXHR() {
   }
 
   for (const i of mocks) {
+    console.log(i.url)
     Mock.mock(new RegExp(i.url), i.type || 'get', XHR2ExpressReqWrap(i.response))
   }
 }
