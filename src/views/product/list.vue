@@ -97,7 +97,7 @@
     <el-dialog title="价格申请" :visible.sync="dialogPriceVisible" width="30%">
       <el-form :model="priceApply">
         <el-form-item label="价格" style="font-size:12px;">
-          <el-input v-model="priceApply.price" style="color:red;width:200px;"/> 
+          <el-input v-model="priceApply.price" style="color:red;width:200px;" />
           <span style="color:red;">(￥{{ priceApply.price | toThousandFilter }})</span>
           <el-input v-model="priceApply.productId" type="hidden" />
         </el-form-item>

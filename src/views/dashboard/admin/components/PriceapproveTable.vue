@@ -8,10 +8,10 @@
       <el-table :data="prices" style="width: 100%;">
         <el-table-column label="序号" width="50px" type="index" align="center" />
         <el-table-column label="商品名称" prop="productName" />
-        <el-table-column label="商品价格"  width="80px" align="right">
-            <template slot-scope="scope">
-          <span style="font-weight: bold;color:red;">￥{{ scope.row.price |toThousandFilter }}</span>
-        </template>
+        <el-table-column label="商品价格" width="80px" align="right">
+          <template slot-scope="scope">
+            <span style="font-weight: bold;color:red;">￥{{ scope.row.price |toThousandFilter }}</span>
+          </template>
         </el-table-column>
         <el-table-column label="申请人" align="center" prop="modifier" width="80px" />
         <el-table-column label="申请时间" align="center" prop="lastModifiedTime" width="90px" />

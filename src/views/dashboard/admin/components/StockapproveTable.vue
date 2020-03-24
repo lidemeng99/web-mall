@@ -9,14 +9,14 @@
         <el-table-column label="序号" width="50px" type="index" align="center" />
         <el-table-column label="商品名称" prop="productName" />
         <el-table-column label="库存量" width="80px" align="right">
-           <template slot-scope="scope">
-          <span style="font-weight: bold;color:red;">{{ scope.row.stock |toThousandFilter }}</span>
-        </template>
+          <template slot-scope="scope">
+            <span style="font-weight: bold;color:red;">{{ scope.row.stock |toThousandFilter }}</span>
+          </template>
         </el-table-column>
         <el-table-column label="单位" prop="unit" width="50px" align="center">
-           <template slot-scope="scope">
-          <span style="font-weight: bold;color:red;">{{ scope.row.unit}}</span>
-        </template>
+          <template slot-scope="scope">
+            <span style="font-weight: bold;color:red;">{{ scope.row.unit }}</span>
+          </template>
         </el-table-column>
         <el-table-column label="申请人" align="center" prop="modifier" width="80px" />
         <el-table-column label="申请时间" align="center" prop="lastModifiedTime" width="90px" />

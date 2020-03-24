@@ -13,8 +13,8 @@
             操作<i class="el-icon-arrow-down el-icon--right" />
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-plus" v-if="item.status!=='APPROVED'" :command="beforeHandleCommand('ADDCHILD',item,index)">添加子类目</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-check" v-if="item.status!=='APPROVED'" :command="beforeHandleCommand('SUBMIT',item,index)" divided>提交审批</el-dropdown-item>
+            <el-dropdown-item v-if="item.status!=='APPROVED'" icon="el-icon-plus" :command="beforeHandleCommand('ADDCHILD',item,index)">添加子类目</el-dropdown-item>
+            <el-dropdown-item v-if="item.status!=='APPROVED'" icon="el-icon-check" :command="beforeHandleCommand('SUBMIT',item,index)" divided>提交审批</el-dropdown-item>
             <el-dropdown-item icon="el-icon-delete" :command="beforeHandleCommand('CANCEL',item,index)">删除类目</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>

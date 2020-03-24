@@ -23,8 +23,7 @@
       </div>
     </el-card>
 
-
-     <el-card v-if="list.length===0" class="box-card" style="width:30%;height:200px;float:left;margin-top:4px;margin-left: 2.5%;text-align:center;position: relative;">
+    <el-card v-if="list.length===0" class="box-card" style="width:30%;height:200px;float:left;margin-top:4px;margin-left: 2.5%;text-align:center;position: relative;">
       <div style="position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);">
         无待发货订单
       </div>

@@ -87,7 +87,7 @@ export default {
 }
 
 .back-to-ceiling:hover {
- 
+
 }
 
 .fade-enter-active,
