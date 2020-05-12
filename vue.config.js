@@ -39,7 +39,7 @@ module.exports = {
     before: require('./mock/mock-server.js'),
     proxy: {
       '/dev-api/product-api': {
-        target: 'http://mall.damonli99.site',
+        target: 'https://mall.damonli99.site',
         changeOrigin: true,
         pathRewrite: {
           '^/dev-api/product-api': '/product-api'
@@ -66,7 +66,7 @@ module.exports = {
         }
       },
       '/dev-api/sales-api': {
-        target: 'http://mall.damonli99.site',
+        target: 'https://mall.damonli99.site',
         changeOrigin: true,
         pathRewrite: {
           '^/dev-api/sales-api': '/sales-api'
