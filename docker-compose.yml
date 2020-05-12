@@ -5,13 +5,9 @@ services:
     container_name: onlinemall-web
     ports:
     - "8090:8090"
+    volumes: 
+      - ./dist:/var/log/nginx
     restart: always
-    command: 
-      - /bin/bash
-      - -c
-      - |
-        mkdir -p /app
-        cp -R ./dist /app
 networks:
   default:
     external:
