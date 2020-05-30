@@ -89,7 +89,7 @@ export default {
       picurls: [],
       dialogImageUrl: '',
       dialogVisible: false,
-      uploadurl: '/dev-api/product-api/api/s3/upload'
+      uploadurl: '/product-api/api/s3/upload'
     }
   },
   created() {
